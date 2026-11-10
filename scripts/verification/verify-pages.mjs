@@ -23,6 +23,7 @@ async function call(route, { method = 'GET', data, actor, headers } = {}) {
 const actorOf = result => ({ ...result.value, cookie: result.response.headers.get('set-cookie').split(';')[0] });
 try {
   check('upload directory includes compiled API Worker', (await readFile('out/_worker.js', 'utf8')).includes('handlePages'));
+  check('Worker avoids class static blocks incompatible with hosted Pages re-bundling', !/\bstatic\s*\{/.test(await readFile('out/_worker.js', 'utf8')));
   const routes = JSON.parse(await readFile('out/_routes.json', 'utf8'));
   check('API routing included in upload directory', routes.version === 1 && routes.include.includes('/api/*'));
   const migration = spawnSync(process.execPath, [cli, 'd1', 'migrations', 'apply', 'DB', '--local', '--persist-to', state], { cwd: root, encoding: 'utf8', windowsHide: true });
