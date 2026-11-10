@@ -1,0 +1,10 @@
+name = "yug-website-git"
+compatibility_date = "2026-11-09"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = "out"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "yanyang-government"
+database_id = "1398b31b-9e7f-413b-b253-746c7367894a"
+migrations_dir = "migrations"

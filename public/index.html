@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#a3121e" />
+    <meta name="description" data-content-content="site.description" content="晏阳联合政府网站，提供政务资讯、政策解读、办事指南和互动交流。" />
+    <title>晏阳联合政府网站</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <a data-content="ui.skipLink" class="skip-link" href="#main">跳至主要内容</a>
+    <svg class="icon-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18M5 6h14M5 18h14"/></symbol>
+        <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+        <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1Z"/></symbol>
+        <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
+        <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+        <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H5v18h14V8Z"/><path d="M14 3v5h5M8 12h8M8 16h6"/></symbol>
+        <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 5v16M3 4c3-1 6 0 9 2 3-2 6-3 9-2v15c-3-1-6 0-9 2-3-2-6-3-9-2Z"/></symbol>
+        <symbol id="i-building" viewBox="0 0 24 24"><path d="m3 7 9-4 9 4M3 8h18M5 9v10m5-10v10m4-10v10m5-10v10M2 21h20M3 18h18"/></symbol>
+        <symbol id="i-message" viewBox="0 0 24 24"><path d="M21 4H3v14h5v4l5-4h8Z"/><path d="M7 9h10M7 13h7"/></symbol>
+        <symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6Z"/><path d="m8 12 3 3 5-6"/></symbol>
+        <symbol id="i-briefcase" viewBox="0 0 24 24"><path d="M8 6V3h8v3M3 6h18v15H3ZM3 11c5 4 13 4 18 0M10 12h4v4h-4Z"/></symbol>
+        <symbol id="i-bus" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="16" rx="3"/><path d="M5 12h14M8 19v3m8-3v3M8 15h1m6 0h1M9 6h6"/></symbol>
+        <symbol id="i-store" viewBox="0 0 24 24"><path d="M4 10v11h16V10M3 10l2-7h14l2 7M3 10c0 3 4 3 4 0 0 3 5 3 5 0 0 3 5 3 5 0 0 3 4 3 4 0M9 21v-7h6v7"/></symbol>
+        <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20 5c-3-3-7-1-8 2-1-3-5-5-8-2-4 5 2 10 8 16 6-6 12-11 8-16Z"/></symbol>
+        <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="4"/><path d="M2 21v-3c0-5 14-5 14 0v3M16 4c5 0 5 8 0 8m3 3c3 0 3 3 3 6"/></symbol>
+        <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+        <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 5 5L20 7"/></symbol>
+        <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></symbol>
+        <symbol id="i-access" viewBox="0 0 24 24"><circle cx="12" cy="4" r="2"/><path d="M3 8h18M12 7v7m-5 8 5-8 5 8"/></symbol>
+        <symbol id="i-up" viewBox="0 0 24 24"><path d="m5 14 7-7 7 7M12 7v14M5 3h14"/></symbol>
+        <symbol id="i-pin" viewBox="0 0 24 24"><path d="M19 10c0 5-7 12-7 12S5 15 5 10a7 7 0 0 1 14 0Z"/><circle cx="12" cy="10" r="2"/></symbol>
+      </defs>
+    </svg>
+
+    <header>
+      <div class="utility-bar">
+        <div class="container utility-inner">
+          <div class="welcome"><span data-content="header.welcome">欢迎访问晏阳联合政府网站</span><span class="utility-date">2026年10月10日　星期六</span></div>
+          <div class="utility-actions">
+            <button id="accessibility-toggle" aria-pressed="false"><svg class="icon"><use href="#i-access"/></svg><span data-content="header.accessibility">无障碍</span></button>
+            <span class="utility-divider"></span>
+            <button data-content="header.senior" id="senior-toggle" aria-pressed="false">长者模式</button>
+            <span class="utility-divider"></span>
+            <button data-content="header.help" data-info="网站帮助">网站帮助</button>
+            <span class="utility-divider"></span>
+            <a data-content="header.admin" href="./admin">管理模式</a>
+            <span class="utility-divider"></span>
+            <div class="language-control">
+              <button class="language-toggle" id="language-toggle" popovertarget="language-panel" aria-haspopup="dialog" aria-controls="language-panel" aria-expanded="false"><svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg><span id="language-label" class="sr-only">语言</span><span id="language-current">简体中文</span><svg class="icon language-chevron" aria-hidden="true"><use href="#i-chevron"/></svg></button>
+              <div class="language-panel" id="language-panel" popover="auto" role="dialog" aria-labelledby="language-panel-title">
+                <div class="language-panel-heading"><div><span class="language-panel-eyebrow">12 LANGUAGES</span><h2 id="language-panel-title">语言</h2></div><button class="language-close" id="language-close" popovertarget="language-panel" popovertargetaction="hide" data-i18n-aria-label="closeDialog" aria-label="关闭详情"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></div>
+                <div class="language-options" id="language-options"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container brand-row">
+        <a class="brand" href="#home" data-content-aria-label="site.title" aria-label="晏阳联合政府网站">
+          <span data-content="site.name" class="brand-name">晏阳联合政府</span>
+          <span data-content="site.subtitle" class="brand-en">Yanyang United Government</span>
+        </a>
+        <div class="header-search">
+          <form class="search-form" id="site-search" role="search">
+            <label data-content="header.searchLabel" class="sr-only" for="search-input">搜索政务资讯、政策和服务</label>
+            <input id="search-input" type="search" data-content-placeholder="header.searchPlaceholder" placeholder="搜索政务资讯、政策、服务" autocomplete="off" />
+            <button type="submit" data-i18n-aria-label="search" aria-label="站内搜索"><svg class="icon"><use href="#i-search"/></svg><span data-content="ui.searchButton">搜索</span></button>
+          </form>
+          <div class="hot-search"><span data-content="header.hotSearch">热搜：</span><button data-content="header.hot1" data-content-search="header.hot1Query" data-search="营商环境">营商环境</button><button data-content="header.hot2" data-content-search="header.hot2Query" data-search="就业">就业创业</button><button data-content="header.hot3" data-content-search="header.hot3Query" data-search="医保">医疗保障</button></div>
+        </div>
+      </div>
+      <nav class="main-nav" data-i18n-aria-label="mainNavigation" aria-label="主导航">
+        <div class="container nav-inner">
+          <a href="#home" class="nav-link active"><svg class="icon"><use href="#i-home"/></svg><span data-content="nav.home">首页</span></a>
+          <a data-content="nav.disclosure" href="#disclosure" class="nav-link">政务公开</a>
+          <a data-content="nav.news" href="#news" class="nav-link">政务动态</a>
+          <a data-content="nav.services" href="#services" class="nav-link">政务服务</a>
+          <a data-content="nav.interaction" href="#interaction" class="nav-link">政民互动</a>
+          <a data-content="nav.city" href="#city" class="nav-link">走进晏阳</a>
+          <a data-content="nav.topics" href="#topics" class="nav-link">专题专栏</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main" class="container">
+      <section class="headline" id="home" data-content-aria-label="headline.tag" aria-label="重点头条">
+        <p class="headline-tag"><span></span><span data-content="headline.tag">今日关注</span><span></span></p>
+        <h1><button data-content="headline.title" id="headline-link" class="headline-title">以实干担当绘就高质量发展新图景</button></h1>
+        <div class="headline-related"><button data-content="headline.related1" data-content-search="headline.related1Query" data-search="营商环境">持续优化营商环境</button><span>｜</span><button data-content="headline.related2" data-content-search="headline.related2Query" data-search="城市">加快建设宜居韧性智慧城市</button><span>｜</span><button data-content="headline.related3" data-content-search="headline.related3Query" data-search="民生">用心用情办好民生实事</button></div>
+      </section>
+
+      <section class="hero-grid" id="news" data-content-aria-label="nav.news" aria-label="城市风貌和政务动态">
+        <div class="feature">
+          <button class="feature-story" id="feature-story" aria-label="查看城市风貌专题">
+            <img id="feature-image" src="./assets/yanyang-hall-preview.jpg" srcset="./assets/yanyang-hall-preview.jpg 960w, ./assets/yanyang-hall.jpg 2000w" sizes="(max-width: 850px) 100vw, 660px" alt="游戏中的晏阳大会堂正面，立柱与宽阔台阶在日光下形成整齐的光影" fetchpriority="high" width="960" height="512" />
+            <span data-content="feature.tag" class="feature-tag">美丽晏阳</span>
+            <span class="feature-shade"></span>
+            <span class="feature-caption"><span id="feature-kicker">晏阳大会堂</span><strong id="feature-title">光影映照厅堂　方寸尽显庄严</strong></span>
+          </button>
+          <div class="feature-controls">
+            <div class="slide-dots" data-i18n-aria-label="slideSelector" aria-label="选择城市图片">
+              <button class="slide-dot active" data-slide="0" aria-label="第1张：晏阳大会堂" aria-pressed="true"><span data-content="slides.0.kicker">晏阳大会堂</span></button>
+              <button class="slide-dot" data-slide="1" aria-label="第2张：城市新景" aria-pressed="false"><span data-content="slides.1.kicker">城市新景</span></button>
+              <button class="slide-dot" data-slide="2" aria-label="第3张：站前广场" aria-pressed="false"><span data-content="slides.2.kicker">站前广场</span></button>
+            </div>
+            <div class="slide-arrows"><span><b id="slide-current">01</b> / 03</span><button id="slide-prev" data-i18n-aria-label="previousSlide" aria-label="上一张图片"><svg class="icon rotate"><use href="#i-chevron"/></svg></button><button id="slide-next" data-i18n-aria-label="nextSlide" aria-label="下一张图片"><svg class="icon"><use href="#i-chevron"/></svg></button></div>
+          </div>
+        </div>
+        <div class="news-panel">
+          <div class="section-heading news-heading">
+            <div class="news-tabs" role="tablist" data-i18n-aria-label="newsTabs" aria-label="新闻栏目">
+              <button class="news-tab active" id="tab-government" role="tab" aria-controls="news-list" aria-selected="true" data-news-tab="政务要闻" data-content="categories.政务要闻">政务要闻</button>
+              <button class="news-tab" id="tab-notice" role="tab" aria-controls="news-list" aria-selected="false" tabindex="-1" data-news-tab="通知公告" data-content="categories.通知公告">通知公告</button>
+            </div>
+          </div>
+          <div id="news-list" role="tabpanel" aria-labelledby="tab-government" class="news-list"></div>
+          <div class="news-bottom"><span class="news-update"><svg class="icon"><use href="#i-clock"/></svg><span data-content="news.footer">及时发布政务信息　主动回应社会关切</span></span><button class="more-link" id="news-more"><span data-content="ui.more">更多</span><svg class="icon"><use href="#i-chevron"/></svg></button></div>
+        </div>
+      </section>
+
+      <div class="quick-entries" data-i18n-aria-label="commonEntries" aria-label="常用政务入口">
+        <button data-info="政府信息公开"><svg class="entry-icon"><use href="#i-file"/></svg><span><strong data-content="quick.disclosure.title">政府信息公开</strong><small data-content="quick.disclosure.subtitle">公开透明　依法行政</small></span><svg class="icon entry-arrow"><use href="#i-chevron"/></svg></button>
+        <button data-category="政策文件"><svg class="entry-icon"><use href="#i-book"/></svg><span><strong data-content="quick.policy.title">政策文件库</strong><small data-content="quick.policy.subtitle">权威发布　精准查询</small></span><svg class="icon entry-arrow"><use href="#i-chevron"/></svg></button>
+        <a href="#services"><svg class="entry-icon"><use href="#i-building"/></svg><span><strong data-content="quick.service.title">政务服务大厅</strong><small data-content="quick.service.subtitle">一网通办　便捷高效</small></span><svg class="icon entry-arrow"><use href="#i-chevron"/></svg></a>
+        <a href="#interaction"><svg class="entry-icon"><use href="#i-message"/></svg><span><strong data-content="quick.interaction.title">互动交流平台</strong><small data-content="quick.interaction.subtitle">倾听民意　为民解忧</small></span><svg class="icon entry-arrow"><use href="#i-chevron"/></svg></a>
+      </div>
+
+      <section class="policy-grid" id="disclosure" data-content-aria-label="disclosure.title" aria-label="政策及政府信息公开">
+        <div class="policy-column">
+          <div class="section-heading"><h2 data-content="policy.title">最新政策</h2><button class="more-link" data-category="政策文件"><span data-content="ui.more">更多</span><svg class="icon"><use href="#i-chevron"/></svg></button></div>
+          <ul class="compact-list" id="policy-list"></ul>
+          <button class="policy-library" data-category="政策文件"><svg class="icon"><use href="#i-search"/></svg><span data-content="policy.search">查找您关心的政策文件</span><svg class="icon"><use href="#i-arrow"/></svg></button>
+        </div>
+        <div class="policy-column interpretation-column">
+          <div class="section-heading"><h2 data-content="policy.interpretationTitle">政策解读</h2><button class="more-link" data-category="政策解读"><span data-content="ui.more">更多</span><svg class="icon"><use href="#i-chevron"/></svg></button></div>
+          <button class="interpretation-banner" id="interpretation-feature"><span><small data-content="policy.bannerKicker">让政策走进生活</small><strong class="content-lines" data-content="policy.bannerTitle">政策看得懂
+红利享得到</strong><em><span data-content="policy.bannerDetail">一图读懂惠民惠企新举措</span> <svg class="icon"><use href="#i-arrow"/></svg></em></span><svg class="interpretation-art"><use href="#i-file"/></svg></button>
+          <ul class="compact-list interpretation-list" id="interpretation-list"></ul>
+        </div>
+        <div class="disclosure-column">
+          <div class="section-heading"><h2 data-content="disclosure.title">政府信息公开</h2></div>
+          <div class="disclosure-grid">
+            <button data-info="信息公开指南"><svg class="icon"><use href="#i-book"/></svg><span data-content="disclosure.guide">公开指南</span></button>
+            <button data-info="信息公开目录"><svg class="icon"><use href="#i-file"/></svg><span data-content="disclosure.directory">公开目录</span></button>
+            <button data-info="政府工作报告"><svg class="icon"><use href="#i-building"/></svg><span data-content="disclosure.report">工作报告</span></button>
+            <button data-info="财政预决算"><svg class="icon"><use href="#i-briefcase"/></svg><span data-content="disclosure.finance">财政预决算</span></button>
+            <button data-info="重点领域公开"><svg class="icon"><use href="#i-shield"/></svg><span data-content="disclosure.keyAreas">重点领域</span></button>
+            <button data-info="依申请公开"><svg class="icon"><use href="#i-message"/></svg><span data-content="disclosure.application">依申请公开</span></button>
+          </div>
+          <button class="government-report" data-info="政府工作报告"><span data-content="disclosure.reportYear">2026</span><strong data-content="disclosure.reportTitle">政府工作报告</strong><svg class="icon"><use href="#i-arrow"/></svg></button>
+        </div>
+      </section>
+
+      <button class="livelihood-banner" data-topic="民生实事"><span class="banner-text"><small data-content="livelihood.kicker">以人民为中心　让幸福可感可及</small><strong data-content="livelihood.title">把民生实事办到群众心坎上</strong></span><span class="banner-detail"><span data-content="livelihood.detail">2026年晏阳民生实事专题</span><svg class="icon"><use href="#i-arrow"/></svg></span></button>
+
+      <section class="services-section" id="services">
+        <div class="section-heading"><div class="section-title"><h2 data-content="serviceArea.title">政务服务</h2><span data-content="serviceArea.subtitle">便民利企，办事更省心</span></div><button class="more-link" id="all-services"><span data-content="serviceArea.all">全部服务</span><svg class="icon"><use href="#i-chevron"/></svg></button></div>
+        <div class="services-layout">
+          <div class="service-main">
+            <div class="service-tabs" role="tablist" data-i18n-aria-label="serviceTabs" aria-label="办事对象"><button class="active" role="tab" id="service-tab-all" aria-controls="service-grid" aria-selected="true" data-service-tab="热门服务" data-content="serviceArea.tab.hot">热门服务</button><button role="tab" id="service-tab-person" aria-controls="service-grid" aria-selected="false" tabindex="-1" data-service-tab="个人办事" data-content="serviceArea.tab.personal">个人办事</button><button role="tab" id="service-tab-enterprise" aria-controls="service-grid" aria-selected="false" tabindex="-1" data-service-tab="法人办事" data-content="serviceArea.tab.enterprise">法人办事</button></div>
+            <div class="service-grid" id="service-grid" role="tabpanel" aria-labelledby="service-tab-all"></div>
+          </div>
+          <div class="service-promotion"><svg class="promotion-icon"><use href="#i-building"/></svg><h3 data-content="serviceArea.promotionTitle">高效办成一件事</h3><p class="content-lines" data-content="serviceArea.promotionBody">从“一事一办”到“一次办好”
+让政务服务更有温度</p><button data-info="高效办成一件事"><span data-content="serviceArea.promotionButton">查看办事指南</span><svg class="icon"><use href="#i-arrow"/></svg></button></div>
+        </div>
+      </section>
+
+      <section class="interaction-grid" id="interaction">
+        <div class="interaction-main">
+          <div class="section-heading"><div class="section-title"><h2 data-content="interaction.title">政民互动</h2><span data-content="interaction.subtitle">您的声音，我们倾听</span></div><button class="more-link" data-info="互动交流"><span data-content="ui.more">更多</span><svg class="icon"><use href="#i-chevron"/></svg></button></div>
+          <div class="interaction-entries"><button id="open-message"><svg class="icon"><use href="#i-message"/></svg><span><strong data-content="interaction.message">我要留言</strong><small data-content="interaction.messageSubtitle">诉求有回应，办理有回音</small></span><svg class="icon"><use href="#i-chevron"/></svg></button><button data-info="意见征集"><svg class="icon"><use href="#i-users"/></svg><span><strong data-content="interaction.survey">意见征集</strong><small data-content="interaction.surveySubtitle">邀您共建美好晏阳</small></span><svg class="icon"><use href="#i-chevron"/></svg></button></div>
+          <div class="response-heading"><h3 data-content="interaction.responseTitle">回应关切</h3><span data-content="interaction.responseSubtitle">关注民生热点　解答群众疑问</span></div>
+          <ul class="compact-list" id="response-list"></ul>
+        </div>
+        <div class="notice-column"><div class="section-heading"><h2 data-content="interaction.departmentTitle">部门动态</h2><button class="more-link" data-category="部门动态"><span data-content="ui.more">更多</span><svg class="icon"><use href="#i-chevron"/></svg></button></div><ul class="compact-list" id="department-list"></ul><div class="hotline"><svg class="icon"><use href="#i-message"/></svg><span><span data-content="interaction.hotlineTitle">政务服务联系邮箱</span><strong data-content="interaction.hotlineNumber">feedback@yanyn.cn</strong></span><small class="content-lines" data-content="interaction.hotlineDescription">倾听诉求
+服务民生</small></div></div>
+      </section>
+
+      <section class="city-gallery-section" id="city" aria-labelledby="city-gallery-title">
+        <div class="section-heading"><div class="section-title"><h2 id="city-gallery-title" data-content="gallery.title">城市风貌</h2><span data-content="gallery.subtitle">从恢宏厅堂到街巷院落，看见晏阳的不同侧面</span></div></div>
+        <div class="city-photo-grid" id="city-photo-grid"></div>
+        <p class="city-gallery-note" data-content="gallery.note">影像来源：晏阳城市建设服务器</p>
+      </section>
+
+      <section class="topics-section" id="topics"><div class="section-heading"><div class="section-title"><h2 data-content="topicArea.title">专题专栏</h2><span data-content="topicArea.subtitle">聚焦发展，记录晏阳</span></div><button class="more-link" data-info="专题专栏"><span data-content="topicArea.all">全部专题</span><svg class="icon"><use href="#i-chevron"/></svg></button></div><div class="topic-grid"><button class="topic-card topic-business" data-topic="营商环境"><small data-content="topicCard.business.kicker">惠企利民　服务发展</small><strong data-content="topicCard.business.title">持续优化营商环境</strong><span><span data-content="topicCard.business.detail">打造投资兴业的活力之城</span><svg class="icon"><use href="#i-arrow"/></svg></span></button><button class="topic-card topic-green" data-topic="绿色发展"><small data-content="topicCard.green.kicker">绿水青山　美好家园</small><strong data-content="topicCard.green.title">绘就绿色发展新画卷</strong><span><span data-content="topicCard.green.detail">共建人与自然和谐的美丽晏阳</span><svg class="icon"><use href="#i-arrow"/></svg></span></button><button class="topic-card topic-digital" data-topic="数字政务"><small data-content="topicCard.digital.kicker">数字赋能　智慧服务</small><strong data-content="topicCard.digital.title">数字政务让生活更便捷</strong><span><span data-content="topicCard.digital.detail">数据多跑路　群众少跑腿</span><svg class="icon"><use href="#i-arrow"/></svg></span></button></div></section>
+    </main>
+
+    <footer class="site-footer"><div class="container footer-content"><p class="footer-copyright" data-content="footer.brand">© 2025-2026 晏阳技术组</p><p data-content="footer.description">“晏阳联合政府” 属于虚构创作设定，与现实世界中的任何政府、政权、组织不存在对应关系。</p><p class="image-attribution" data-content="footer.attribution">影像来源：晏阳城市建设服务器</p></div></footer>
+
+    <button class="back-to-top" id="back-to-top" data-content-aria-label="ui.backToTop" aria-label="返回顶部" hidden><svg class="icon"><use href="#i-up"/></svg></button>
+    <dialog id="content-dialog" class="content-dialog" aria-labelledby="dialog-title"><div class="dialog-header"><span id="dialog-category">政务资讯</span><button id="close-dialog" data-i18n-aria-label="closeDialog" aria-label="关闭详情"><svg class="icon"><use href="#i-close"/></svg></button></div><div class="dialog-content" id="dialog-content"></div></dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>

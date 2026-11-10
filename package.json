@@ -1,0 +1,30 @@
+{
+  "name": "yanyang-government-portal",
+  "version": "3.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npm run build:pages && wrangler pages dev out --port 5173",
+    "start": "node server.mjs",
+    "build": "npm run build:pages && npm run build:portable",
+    "build:pages": "next build && node scripts/prepare-pages.mjs && node scripts/build-pages-worker.mjs",
+    "build:portable": "node scripts/build.mjs",
+    "dev:portable": "node server.mjs",
+    "preview:pages": "wrangler pages dev out --port 5173",
+    "verify:build": "node scripts/verification/verify-pages.mjs && node scripts/verification/verify-built-site.mjs",
+    "db:migrate:local": "wrangler d1 migrations apply DB --local",
+    "db:migrate:remote": "wrangler d1 migrations apply DB --remote",
+    "deploy:pages": "npm run build:pages && wrangler pages deploy out",
+    "package": "node scripts/package.mjs",
+    "test": "node --test tests/*.test.js"
+  },
+  "dependencies": {
+    "next": "16.4.5",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.65.0",
+    "wrangler": "4.158.0"
+  }
+}

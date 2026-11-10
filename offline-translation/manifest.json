@@ -1,0 +1,15 @@
+{
+  "engine": "m2m100-418M-ct2-int8",
+  "engineLicense": "MIT",
+  "sourceRevision": "jncraton/m2m100_418M-ct2-int8@7c1b2620a4e58dacecbd8bf89cfd6da7eb9eb7b0",
+  "languages": ["zh-TW", "en", "ko", "ja", "de", "fr", "ru", "es", "ar", "pt", "it"],
+  "python": "3.11.9 Windows / 3.11.10 Linux x86_64",
+  "files": {
+    "model/config.json": { "bytes": 189, "sha256": "4244772990e30069563e3ddfb4ad6dc95bdfd2ac3de667ea8858c9b0a8433fa8" },
+    "model/model.bin": { "bytes": 490667713, "sha256": "d6703dd9f920ff896e45c3d97b490761bed5944937b90bbe6a7245f5652542d4" },
+    "model/README.md": { "bytes": 4603, "sha256": "1fd660f130aedc5ecf1796b47ab47d43d3c4b36541f5387b7adb3df75cb5dfdb" },
+    "model/sentencepiece.bpe.model": { "bytes": 2423393, "sha256": "d8f7c76ed2a5e0822be39f0a4f95a55eb19c78f4593ce609e2edbc2aea4d380a" },
+    "model/shared_vocabulary.json": { "bytes": 2796509, "sha256": "7eb5d0ff184c6095c7c10f9911c0aea492250abd12854f9c3d787c64b1c6397e" }
+  },
+  "offline": true
+}

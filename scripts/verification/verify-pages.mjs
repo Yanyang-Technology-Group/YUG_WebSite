@@ -1,0 +1,110 @@
+import assert from 'node:assert/strict';
+import { readFile, writeFile, mkdir, mkdtemp, rm } from 'node:fs/promises';
+import os from 'node:os';
+import path from 'node:path';
+import net from 'node:net';
+import { spawn, spawnSync } from 'node:child_process';
+import { chromium } from '@playwright/test';
+const root = process.cwd();
+const state = await mkdtemp(path.join(os.tmpdir(), 'yanyang-pages-'));
+const cli = path.join(root, 'node_modules/wrangler/bin/wrangler.js');
+const setupToken = 'isolated-pages-verification-token-2026';
+const port = await new Promise(resolve => { const socket = net.createServer(); socket.listen(0, '127.0.0.1', () => { const value = socket.address().port; socket.close(() => resolve(value)); }); });
+const base = 'http://127.0.0.1:' + port;
+let service, browser, output = '';
+const report = { version: JSON.parse(await readFile('package.json', 'utf8')).version, isolated: true, checks: [] };
+const check = (name, value) => { assert.ok(value, name); report.checks.push(name); };
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+async function call(route, { method = 'GET', data, actor, headers } = {}) {
+  const response = await fetch(base + route, { method, headers: { ...(data !== undefined ? { 'Content-Type': 'application/json' } : {}), ...(actor ? { Cookie: actor.cookie, 'X-CSRF-Token': actor.csrfToken } : {}), ...headers }, ...(data === undefined ? {} : { body: JSON.stringify(data) }) });
+  const value = await response.json();
+  return { status: response.status, value, response };
+}
+const actorOf = result => ({ ...result.value, cookie: result.response.headers.get('set-cookie').split(';')[0] });
+try {
+  check('upload directory includes compiled API Worker', (await readFile('out/_worker.js', 'utf8')).includes('handlePages'));
+  const routes = JSON.parse(await readFile('out/_routes.json', 'utf8'));
+  check('API routing included in upload directory', routes.version === 1 && routes.include.includes('/api/*'));
+  const migration = spawnSync(process.execPath, [cli, 'd1', 'migrations', 'apply', 'DB', '--local', '--persist-to', state], { cwd: root, encoding: 'utf8', windowsHide: true });
+  assert.equal(migration.status, 0, migration.stderr + migration.stdout);
+  // Preview outside the source repository: no functions/ directory is available.
+  const standalone = path.join(state, 'standalone');
+  await mkdir(standalone);
+  const config = await readFile(path.join(root, 'wrangler.toml'), 'utf8');
+  const outputPath = path.join(root, 'out').split(path.sep).join('/');
+  await writeFile(path.join(standalone, 'wrangler.toml'), config.replace('pages_build_output_dir = "out"', 'pages_build_output_dir = ' + JSON.stringify(outputPath)));
+  service = spawn(process.execPath, [cli, 'pages', 'dev', outputPath, '--port', String(port), '--binding', 'SETUP_TOKEN=' + setupToken, '--persist-to', state], { cwd: standalone, windowsHide: true, stdio: ['pipe', 'pipe', 'pipe'] });
+  service.stdout.on('data', bytes => { output += bytes; }); service.stderr.on('data', bytes => { output += bytes; });
+  let ready = false;
+  for (let index = 0; index < 120; index++) { try { const result = await call('/api/health'); if (result.status === 200) { ready = true; break; } } catch {} await delay(250); }
+  check('standalone out/ upload runs API using workerd + D1 without source functions/', ready);
+  const seed = JSON.parse(await readFile('out/portal-seed.json', 'utf8'));
+  check('public snapshot excludes drafts', seed.articles.every(article => article.status === 'published'));
+  const initial = (await call('/api/articles')).value.articles;
+  check('D1 imports exact published snapshot', initial.length === seed.articles.length && seed.articles.every(article => initial.some(item => item.id === article.id && item.title === article.title)));
+  for (const route of ['/', '/admin/']) { const response = await fetch(base + route); check('Next page ' + route, response.ok && (await response.text()).includes('/_next/static/')); }
+  for (const route of ['/data/admin.json', '/lib/auth.mjs', '/public/index.html', '/server.mjs', '/next/portal.jsx']) check('private/source route ' + route, (await fetch(base + route)).status === 404);
+  check('setup without secret is rejected', (await call('/api/admin/setup', { method: 'POST', data: { username: 'pages_owner', password: 'pages-owner-password-2026' } })).status === 403);
+  const setup = await call('/api/admin/setup', { method: 'POST', headers: { 'X-Setup-Token': setupToken }, data: { username: 'pages_owner', password: 'pages-owner-password-2026' } });
+  assert.equal(setup.status, 201, JSON.stringify(setup.value)); const owner = actorOf(setup);
+  check('setup superadmin and persistent session', owner.role === 'superadmin' && (await call('/api/admin/session', { actor: owner })).value.authenticated);
+  const createUser = async (username, role) => { const result = await call('/api/admin/users', { method: 'POST', actor: owner, data: { username, password: username + '-password-2026', role } }); assert.equal(result.status, 201, JSON.stringify(result.value)); return result.value.user; };
+  const seniorUser = await createUser('pages_senior', 'senioradmin'); const editorUser = await createUser('pages_editor', 'admin');
+  const login = async username => { const result = await call('/api/admin/login', { method: 'POST', data: { username, password: username + '-password-2026' } }); assert.equal(result.status, 200, JSON.stringify(result.value)); return actorOf(result); };
+  const senior = await login('pages_senior'), editor = await login('pages_editor');
+  check('ordinary cannot manage users', (await call('/api/admin/users', { actor: editor })).status === 403);
+  check('senior cannot create superadmin', (await call('/api/admin/users', { method: 'POST', actor: senior, data: { username: 'forged_owner', password: 'forged-password-2026', role: 'superadmin' } })).status === 403);
+  check('senior cannot change roles', (await call('/api/admin/users/' + editorUser.id, { method: 'PUT', actor: senior, data: { role: 'senioradmin' } })).status === 403);
+  check('self cannot change role', (await call('/api/admin/users/' + owner.userId, { method: 'PUT', actor: owner, data: { role: 'admin' } })).status === 409);
+  const fields = { title: 'Pages 审批验证文章', category: '通知公告', date: '2026-11-09', body: ['这是临时隔离验证正文。'], status: 'published' };
+  const application = await call('/api/admin/articles', { method: 'POST', actor: editor, data: fields });
+  assert.equal(application.status, 202, JSON.stringify(application.value));
+  check('senior approval', (await call('/api/admin/requests/' + application.value.request.id + '/review', { method: 'POST', actor: senior, data: { decision: 'approve' } })).status === 200);
+  const submissions = await Promise.all(Array.from({ length: 3 }, (_, index) => call('/api/admin/articles', { method: 'POST', actor: senior, data: { ...fields, title: 'Pages 并发验证文章 ' + index } })));
+  check('concurrent writes are not silently lost', submissions.every(result => result.status === 201 || result.status === 409));
+  const publicArticles = (await call('/api/articles')).value.articles;
+  check('all successful concurrent writes persisted', submissions.filter(result => result.status === 201).every(result => publicArticles.some(item => item.id === result.value.article.id)));
+  const feedback = await call('/api/feedback', { method: 'POST', data: { type: 'suggestion', title: 'Pages 真实留言验证', content: '这是本地边缘运行时的隔离留言测试。', gameName: 'PagesPlayer', qq: '765432109876' } });
+  assert.equal(feedback.status, 201, JSON.stringify(feedback.value));
+  for (const actor of [owner, senior, editor]) check(actor.role + ' can search QQ', (await call('/api/admin/feedback?search=765432109876', { actor })).value.total === 1);
+  check('visitor cannot list feedback', (await call('/api/admin/feedback')).status === 401);
+  check('QQ absent from logs', !JSON.stringify((await call('/api/admin/logs', { actor: owner })).value).includes('765432109876'));
+  check('CSRF blocked', (await call('/api/admin/articles', { method: 'POST', actor: owner, headers: { 'X-CSRF-Token': 'wrong' }, data: fields })).status === 403);
+  check('cross-origin blocked', (await call('/api/admin/articles', { method: 'POST', actor: owner, headers: { Origin: 'https://attacker.invalid' }, data: fields })).status === 403);
+  const scheduled = await call('/api/admin/articles', { method: 'POST', actor: owner, data: { ...fields, title: 'Pages 到期发布验证', status: 'scheduled', scheduledAt: new Date(Date.now() + 1200).toISOString() } });
+  assert.equal(scheduled.status, 201); await delay(1400);
+  check('due articles published on request', (await call('/api/articles')).value.articles.some(article => article.id === scheduled.value.article.id));
+  check('role change revokes persisted session', (await call('/api/admin/users/' + seniorUser.id, { method: 'PUT', actor: owner, data: { role: 'admin' } })).status === 200 && (await call('/api/admin/articles', { actor: senior })).status === 401);
+  await call('/api/admin/session', { actor: senior });
+  check('session query cannot resurrect a revoked cookie', !(await call('/api/admin/session', { actor: senior })).value.authenticated && (await call('/api/admin/articles', { actor: senior })).status === 401);
+  const passwordChange = await call('/api/admin/password', { method: 'PUT', actor: owner, data: { currentPassword: 'pages-owner-password-2026', newPassword: 'pages-owner-new-password-2026' } });
+  check('own password update preserves current session', passwordChange.status === 200 && (await call('/api/admin/session', { actor: owner })).value.authenticated);
+  check('Pages offline translator rejected', (await call('/api/admin/translation/settings', { method: 'PUT', actor: owner, data: { provider: 'offline', endpoint: 'https://api-free.deepl.com/v2/translate', model: '', apiKey: '', fallback: true } })).status === 400);
+  browser = await chromium.launch({ ...(process.platform === 'win32' ? { channel: 'msedge' } : {}), headless: true });
+  const page = await browser.newPage(); const errors = [];
+  page.on('pageerror', error => errors.push(error.message));
+  page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
+  await page.goto(base + '/'); await page.locator('#news-list li').first().waitFor({ state: 'visible', timeout: 15000 }).catch(async () => { await page.waitForTimeout(1500); });
+  check('home renders published content', (await page.locator('body').innerText()).includes('晏阳联合政府'));
+  check('footer matches requested copyright and disclaimer', (await page.locator('footer').innerText()).trim() === '© 2025-2026 晏阳技术组' + String.fromCharCode(10, 10) + '“晏阳联合政府” 属于虚构创作设定，与现实世界中的任何政府、政权、组织不存在对应关系。' + String.fromCharCode(10, 10) + '影像来源：晏阳城市建设服务器');
+  check('service contact displays feedback email', await page.locator('[data-content="interaction.hotlineNumber"]').innerText() === 'feedback@yanyn.cn');
+  await page.locator('footer').screenshot({ path: 'artifacts/pages/footer-desktop.png' });
+  await page.screenshot({ path: 'artifacts/pages/home-desktop.png', fullPage: true });
+  await page.goto(base + '/admin/'); await page.locator('#username').fill('pages_owner'); await page.locator('#password').fill('pages-owner-new-password-2026'); await page.locator('#auth-submit').click();
+  await page.locator('#workspace').waitFor({ state: 'visible', timeout: 15000 });
+  check('Next hydrated admin authenticates through Pages Functions', await page.locator('#workspace').isVisible());
+  await page.screenshot({ path: 'artifacts/pages/admin-desktop.png', fullPage: true });
+  await page.setViewportSize({ width: 390, height: 844 }); await page.goto(base + '/'); await page.waitForTimeout(1000);
+  check('mobile layout fits viewport', await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1));
+  await page.screenshot({ path: 'artifacts/pages/home-mobile.png', fullPage: true });
+  check('browser has no JS/CSP errors', errors.length === 0 || (console.log(errors), false));
+  report.passed = true; console.log('Pages/Next/D1 verification passed: ' + report.checks.length + ' checks.');
+} catch (error) { report.passed = false; report.error = error.stack; throw error; }
+finally {
+  await browser?.close();
+  if (service) { service.stdin.write('q'); service.stdin.end(); await Promise.race([new Promise(resolve => service.once('exit', resolve)), delay(5000)]); if (service.exitCode === null) service.kill(); }
+  await mkdir('artifacts/reports', { recursive: true });
+  await writeFile('artifacts/reports/pages-' + report.version + '.json', JSON.stringify(report, null, 2));
+  await writeFile('artifacts/pages/verification-runtime.log', output);
+  await rm(state, { recursive: true, force: true, maxRetries: 3 }).catch(() => {});
+}

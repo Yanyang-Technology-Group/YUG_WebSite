@@ -1,0 +1,51 @@
+晏阳联合政府 · 城市风貌照片来源（2.15.0）
+
+以下五张图片由用户于2026年10月18日提供，内容为游戏建筑截图。
+来源：晏阳城市建设服务器（按用户指定）。
+未使用真实世界照片替代游戏建筑，不推定拍摄者身份、授权许可证或未经确认的建筑名称。
+处理：保留完整画面比例，制作最长宽2000像素的JPEG大图与960像素预览图，未修改原文件。
+
+yanyang-hall.jpg / yanyang-hall-preview.jpg
+原文件：1c98ba3bc68c0b59f3d2c36389ed59ea.png
+
+yanyang-residences.jpg / yanyang-residences-preview.jpg
+原文件：db02a1563024c74a7ad0c30497fa9834.png
+
+yanyang-skyline.jpg / yanyang-skyline-preview.jpg
+原文件：f3d9254982a8c666041f251409663b79.png
+
+yanyang-courtyard.jpg / yanyang-courtyard-preview.jpg
+原文件：025ac302f5b9d1f46e059777e7f6320a.png
+
+yanyang-station.jpg / yanyang-station-preview.jpg
+原文件：ed679bb33fbb52859852829d2d2296f7.png
+
+以下为保留的历史素材记录（当前首页及图集均已不再使用）：
+
+Local photo assets for the fictional Yunchuan city portal.
+Downloaded from Wikimedia Commons and resized to 1600 pixels wide.
+These source records are documentation, not outbound website links.
+
+city-lake.jpg
+Subject: Hangzhou city skyline seen across West Lake.
+Original: West Lake IMG 8756 hangzhou panorama.jpg
+Author: Bjoertvedt
+License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).
+Source: https://commons.wikimedia.org/wiki/File:West_Lake_IMG_8756_hangzhou_panorama.jpg
+Changes: Resized and recompressed as JPEG.
+
+city-green.jpg
+Subject: Leifeng Pagoda, willow branches, green woodland and West Lake.
+Original: Leifeng Pagoda and Willow Tree across West Lake.jpg
+Author: Yinweichen
+License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).
+Source: https://commons.wikimedia.org/wiki/File:Leifeng_Pagoda_and_Willow_Tree_across_West_Lake.jpg
+Changes: Resized and recompressed as JPEG.
+
+city-night.jpg
+Subject: Qianjiang Century City skyline across the Qiantang River at night.
+Original: Qianjiang Century City at night 20260413 (1).jpg
+Author: DvTor8303
+License: CC0 1.0 Universal Public Domain Dedication.
+Source: https://commons.wikimedia.org/wiki/File:Qianjiang_Century_City_at_night_20260413_(1).jpg
+Changes: Resized and recompressed as JPEG.

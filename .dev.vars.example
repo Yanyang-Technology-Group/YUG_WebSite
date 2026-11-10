@@ -1,0 +1,2 @@
+# Copy to .dev.vars for local preview. Use a different random value in production.
+SETUP_TOKEN=replace-with-a-random-token-of-at-least-32-characters
