@@ -285,7 +285,11 @@
     "display.seniorOn": "어르신 모드가 켜졌습니다",
     "display.seniorOff": "기본 화면으로 돌아왔습니다",
     "display.accessibilityOn": "접근성 읽기 모드가 켜졌습니다",
-    "display.accessibilityOff": "기본 읽기 모드로 돌아왔습니다"
+    "display.accessibilityOff": "기본 읽기 모드로 돌아왔습니다",
+    "footer.navigation": "사이트 바로가기",
+    "footer.organization": "기관 및 업무",
+    "footer.sitemap": "사이트맵",
+    "footer.help": "이용 도움말"
   },
   "ui": {
     "language": "언어",

@@ -275,9 +275,6 @@ main.container { padding-bottom:64px; }
 .topic-digital::after { box-shadow:none; }
 .topic-card:hover { border-color:#b69b97; background:#f6f3f0; }
 .site-footer { background:#5a0d16; color:#ecd4c1; border-top:3px solid #d6b677; font-size:12px; }
-.footer-content { padding-top:30px; padding-bottom:32px; text-align:center; line-height:1.9; overflow-wrap:anywhere; }
-.footer-content p + p { margin-top:12px; }
-.footer-copyright { color:#f7f4f1; font-size:14px; }
 .footer-links { display:flex; flex-wrap:wrap; gap:13px 29px; padding:24px 0; border-bottom:1px solid #d1c1b821; }
 .footer-links strong { font-weight:500; color:#efe8e2; margin-inline-end:24px; }
 .footer-links button:hover { color:white; }

@@ -285,7 +285,11 @@
     "display.seniorOn": "Mode seniors activé",
     "display.seniorOff": "Affichage standard rétabli",
     "display.accessibilityOn": "Mode de lecture accessible activé",
-    "display.accessibilityOff": "Mode de lecture standard rétabli"
+    "display.accessibilityOff": "Mode de lecture standard rétabli",
+    "footer.navigation": "Navigation",
+    "footer.organization": "Organismes et missions",
+    "footer.sitemap": "Plan du site",
+    "footer.help": "Aide du site"
   },
   "ui": {
     "language": "Langue",

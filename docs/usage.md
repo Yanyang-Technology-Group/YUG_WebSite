@@ -1,6 +1,6 @@
 # 使用说明
 
-晏阳联合政府网站 3.0.1。项目结构见 [目录说明](directory-structure.md)，快速入口见 [项目说明](../README.md)。
+晏阳联合政府网站 3.0.2。项目结构见 [目录说明](directory-structure.md)，快速入口见 [项目说明](../README.md)。
 
 Cloudflare Pages 的安装、D1 绑定、首次账号设置、内容导入和运行限制统一见 [Pages 部署说明](cloudflare-pages.md)。Pages 使用 Next 静态页面、Functions API 和私有 D1；以下涉及 data/ 文件、每秒定时器、离线翻译与启停脚本的说明适用于 Windows / Linux 本机部署。Pages 的定时发布由到期后的 API 请求触发，在线翻译按请求分批推进，账号首次设置需要 SETUP_TOKEN。
 
@@ -68,17 +68,17 @@ npm run dev:portable
 
 ## Windows 部署与局域网访问
 
-使用项目目录 `downloads/3.0.1/` 下的 Windows ZIP，其中包含发布时的文章、草稿和网站区域文字快照；需要当前内容时，在项目目录运行 `npm run package` 导出双平台迁移包。复制 Windows ZIP 到另一台 Windows 10/11 x64 电脑，完整解压后双击“启动网站.cmd”（英文别名 `start.cmd`），浏览器自动打开网站。包内自带经过官方 SHA-256 校验的 Node.js 24.21.0，目标电脑无需安装软件或联网。新电脑首次进入管理模式时重新设置管理员密码。双击“停止网站.cmd”（`stop.cmd`）停止服务，数据会保留。
+使用项目目录 `downloads/3.0.2/` 下的 Windows ZIP，其中包含发布时的文章、草稿和网站区域文字快照；需要当前内容时，在项目目录运行 `npm run package` 导出双平台迁移包。复制 Windows ZIP 到另一台 Windows 10/11 x64 电脑，完整解压后双击“启动网站.cmd”（英文别名 `start.cmd`），浏览器自动打开网站。包内自带经过官方 SHA-256 校验的 Node.js 24.21.0，目标电脑无需安装软件或联网。新电脑首次进入管理模式时重新设置管理员密码。双击“停止网站.cmd”（`stop.cmd`）停止服务，数据会保留。
 
 双击“局域网启动.cmd”（`start-lan.cmd`）可让同一局域网中的电脑访问服务器的 IPv4 地址和端口。首次管理员密码须在服务器本机设置；Windows 防火墙的专用网络权限由使用者自行开启。默认 `start.cmd` 只允许本机访问。端口冲突时，在部署目录的命令提示符中运行 `start.cmd -Port 5174`；PowerShell 使用 `./start.cmd -Port 5174`。切换端口或启动方式前先运行 `stop.cmd`。公网部署需另行配置 HTTPS 与反向代理。
 
 ## Linux 部署
 
-使用项目目录 `downloads/3.0.1/` 下的 Linux TAR.GZ；需要当前内容时，在项目目录运行 `npm run package`，与 Windows 包一起导出。适用于 Linux x86_64、glibc 2.28+，例如 Ubuntu 22.04+、Debian 12+；不适用于 Alpine/musl 或 ARM。系统需有 `sh`、`tar`、`sha256sum`、`nohup`，无需安装 Node.js。使用有目录写入权限的普通用户运行：
+使用项目目录 `downloads/3.0.2/` 下的 Linux TAR.GZ；需要当前内容时，在项目目录运行 `npm run package`，与 Windows 包一起导出。适用于 Linux x86_64、glibc 2.28+，例如 Ubuntu 22.04+、Debian 12+；不适用于 Alpine/musl 或 ARM。系统需有 `sh`、`tar`、`sha256sum`、`nohup`，无需安装 Node.js。使用有目录写入权限的普通用户运行：
 
 ```sh
 mkdir -p yanyang-government
-tar -xzf yanyang-government-3.0.1-linux-x64.tar.gz -C yanyang-government
+tar -xzf yanyang-government-3.0.2-linux-x64.tar.gz -C yanyang-government
 cd yanyang-government
 bash start.sh --no-browser
 ```
@@ -108,9 +108,9 @@ npm run package
 `build` 生成可用 `node dist/server.mjs` 运行的完整服务目录，包含后台、文章和网站区域内容快照，不包含管理员账号。`verify:build` 使用隔离数据验证构建版的角色权限、反馈、定时发布和日志。`package` 默认同时生成两种平台的同版部署包，例如：
 
 ```text
-downloads/3.0.1/yanyang-government-3.0.1-windows-x64.zip
-downloads/3.0.1/yanyang-government-3.0.1-linux-x64.tar.gz
-downloads/3.0.1/release.json
+downloads/3.0.2/yanyang-government-3.0.2-windows-x64.zip
+downloads/3.0.2/yanyang-government-3.0.2-linux-x64.tar.gz
+downloads/3.0.2/release.json
 ```
 
 `release.json` 记录两个归档的版本、文件名、字节数和 SHA-256。版本目录保留历史版本；`downloads/yanyang-government-windows-x64.zip` 与 `downloads/yanyang-government-linux-x64.tar.gz` 为当前别名。改动后先更新 `package.json` 版本，再依次执行测试、构建、验证和打包，不发布单个平台。两个包从同一次源码和内容快照生成，任一平台生成失败时命令报错。

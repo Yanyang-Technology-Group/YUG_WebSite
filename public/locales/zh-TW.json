@@ -285,7 +285,11 @@
     "display.seniorOn": "已開啟長者模式",
     "display.seniorOff": "已恢復標準顯示",
     "display.accessibilityOn": "已開啟無障礙閱讀模式",
-    "display.accessibilityOff": "已恢復標準閱讀模式"
+    "display.accessibilityOff": "已恢復標準閱讀模式",
+    "footer.navigation": "網站導覽",
+    "footer.organization": "機關職掌",
+    "footer.sitemap": "網站地圖",
+    "footer.help": "網站使用說明"
   },
   "ui": {
     "language": "語言",

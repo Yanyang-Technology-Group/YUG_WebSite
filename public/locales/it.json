@@ -285,7 +285,11 @@
     "display.seniorOn": "Modalità anziani attivata",
     "display.seniorOff": "Visualizzazione standard ripristinata",
     "display.accessibilityOn": "Modalità di lettura accessibile attivata",
-    "display.accessibilityOff": "Modalità di lettura standard ripristinata"
+    "display.accessibilityOff": "Modalità di lettura standard ripristinata",
+    "footer.navigation": "Navigazione del sito",
+    "footer.organization": "Enti e competenze",
+    "footer.sitemap": "Mappa del sito",
+    "footer.help": "Guida al sito"
   },
   "ui": {
     "language": "Lingua",

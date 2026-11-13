@@ -87,7 +87,10 @@ try {
   page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
   await page.goto(base + '/'); await page.locator('#news-list li').first().waitFor({ state: 'visible', timeout: 15000 }).catch(async () => { await page.waitForTimeout(1500); });
   check('home renders published content', (await page.locator('body').innerText()).includes('晏阳联合政府'));
-  check('footer matches requested copyright and disclaimer', (await page.locator('footer').innerText()).trim() === '© 2025-2026 晏阳技术组' + String.fromCharCode(10, 10) + '“晏阳联合政府” 属于虚构创作设定，与现实世界中的任何政府、政权、组织不存在对应关系。' + String.fromCharCode(10, 10) + '影像来源：晏阳城市建设服务器');
+  check('footer matches requested copyright and disclaimer', await page.locator('footer [data-content="footer.brand"]').innerText() === '© 2025-2026 晏阳技术组' && await page.locator('footer [data-content="footer.description"]').innerText() === '“晏阳联合政府” 属于虚构创作设定，与现实世界中的任何政府、政权、组织不存在对应关系。' && await page.locator('footer [data-content="footer.attribution"]').innerText() === '影像来源：晏阳城市建设服务器');
+  await page.locator('.footer-links [data-info="网站地图"]').click();
+  check('restored footer navigation opens sitemap', await page.locator('.content-dialog').isVisible());
+  await page.keyboard.press('Escape');
   check('service contact displays feedback email', await page.locator('[data-content="interaction.hotlineNumber"]').innerText() === 'feedback@yanyn.cn');
   await page.locator('footer').screenshot({ path: 'artifacts/pages/footer-desktop.png' });
   await page.screenshot({ path: 'artifacts/pages/home-desktop.png', fullPage: true });
@@ -97,6 +100,7 @@ try {
   await page.screenshot({ path: 'artifacts/pages/admin-desktop.png', fullPage: true });
   await page.setViewportSize({ width: 390, height: 844 }); await page.goto(base + '/'); await page.waitForTimeout(1000);
   check('mobile layout fits viewport', await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1));
+  await page.locator('footer').screenshot({ path: 'artifacts/pages/footer-mobile.png' });
   await page.screenshot({ path: 'artifacts/pages/home-mobile.png', fullPage: true });
   check('browser has no JS/CSP errors', errors.length === 0 || (console.log(errors), false));
   report.passed = true; console.log('Pages/Next/D1 verification passed: ' + report.checks.length + ' checks.');

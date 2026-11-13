@@ -1,4 +1,4 @@
-# Cloudflare Pages 部署（3.0.1）
+# Cloudflare Pages 部署（3.0.2）
 
 架构：Next.js App Router 静态导出 + 同项目 Pages Functions + Cloudflare D1。首页和 `/admin/`、`/api/*` 使用同一个域名，一次部署；无需额外 Node 服务器。前端页面模板和交互源码继续位于 `public/`，`app/` 是 Next 路由入口。
 

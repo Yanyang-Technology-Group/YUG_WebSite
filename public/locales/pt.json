@@ -285,7 +285,11 @@
     "display.seniorOn": "Modo sénior ativado",
     "display.seniorOff": "Apresentação padrão restaurada",
     "display.accessibilityOn": "Modo de leitura acessível ativado",
-    "display.accessibilityOff": "Modo de leitura padrão restaurado"
+    "display.accessibilityOff": "Modo de leitura padrão restaurado",
+    "footer.navigation": "Navegação do portal",
+    "footer.organization": "Organismos e competências",
+    "footer.sitemap": "Mapa do portal",
+    "footer.help": "Ajuda do portal"
   },
   "ui": {
     "language": "Idioma",

@@ -285,7 +285,11 @@
     "display.seniorOn": "Modo para mayores activado",
     "display.seniorOff": "Vista estándar restaurada",
     "display.accessibilityOn": "Modo de lectura accesible activado",
-    "display.accessibilityOff": "Modo de lectura estándar restaurado"
+    "display.accessibilityOff": "Modo de lectura estándar restaurado",
+    "footer.navigation": "Navegación del sitio",
+    "footer.organization": "Organismos y funciones",
+    "footer.sitemap": "Mapa del sitio",
+    "footer.help": "Ayuda del sitio"
   },
   "ui": {
     "language": "Idioma",

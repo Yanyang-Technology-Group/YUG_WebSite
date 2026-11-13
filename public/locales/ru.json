@@ -285,7 +285,11 @@
     "display.seniorOn": "Режим для пожилых включён",
     "display.seniorOff": "Стандартное отображение восстановлено",
     "display.accessibilityOn": "Режим доступного чтения включён",
-    "display.accessibilityOff": "Стандартный режим чтения восстановлен"
+    "display.accessibilityOff": "Стандартный режим чтения восстановлен",
+    "footer.navigation": "Навигация по сайту",
+    "footer.organization": "Органы власти и их функции",
+    "footer.sitemap": "Карта сайта",
+    "footer.help": "Помощь по сайту"
   },
   "ui": {
     "language": "Язык",

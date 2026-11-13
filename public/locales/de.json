@@ -285,7 +285,11 @@
     "display.seniorOn": "Seniorenmodus aktiviert",
     "display.seniorOff": "Standardanzeige wiederhergestellt",
     "display.accessibilityOn": "Barrierefreier Lesemodus aktiviert",
-    "display.accessibilityOff": "Standardlesemodus wiederhergestellt"
+    "display.accessibilityOff": "Standardlesemodus wiederhergestellt",
+    "footer.navigation": "Seitennavigation",
+    "footer.organization": "Organisation und Aufgaben",
+    "footer.sitemap": "Seitenübersicht",
+    "footer.help": "Hilfe zur Website"
   },
   "ui": {
     "language": "Sprache",

@@ -1,6 +1,6 @@
 # 晏阳联合政府网站
 
-版本：3.0.1。使用 Next.js App Router 静态导出、Cloudflare Pages Functions 和 D1，前台、管理页、API 在同一项目和域名部署。完整部署步骤见 [Cloudflare Pages 部署](docs/cloudflare-pages.md)。Windows / Linux 便携包使用相同 Next 页面和共享 API 逻辑，保留本机文件存储。
+版本：3.0.2。使用 Next.js App Router 静态导出、Cloudflare Pages Functions 和 D1，前台、管理页、API 在同一项目和域名部署。完整部署步骤见 [Cloudflare Pages 部署](docs/cloudflare-pages.md)。Windows / Linux 便携包使用相同 Next 页面和共享 API 逻辑，保留本机文件存储。
 
 采用深红主框架、暖白内容面与金色细节的庄重红色政务视觉风格，使用晏阳联合政府名称和本地示例资讯，不含国徽、国旗或外部跳转链接。
 
@@ -20,6 +20,7 @@
 
 ## 版本记录
 
+- 3.0.2：恢复原版页脚导航、分栏布局与返回顶部入口，保留版权、虚构声明及影像来源文案。
 - 3.0.1：Pages 输出自带编译后的后台，支持直接上传完整 out/；补充缺失后台的明确提示，更新页脚版权、虚构声明及联系邮箱。
 
 - 3.0.0：Next 静态前端 + Pages Functions + D1 同项目部署；保留权限、审批、反馈与内容管理。Pages 使用在线翻译并按请求推进，定时发布在到期后的下一次 API 请求触发；双平台便携包继续支持常驻任务和本机离线翻译。
@@ -54,7 +55,7 @@ npm run verify:build
 npm run package
 ```
 
-build 先生成 Pages 静态目录 out/，再生成便携服务 dist/（node dist/server.mjs 启动）；verify:build 使用临时 D1、隔离文件存储和浏览器验证 Next 页面、权限、反馈、定时发布和日志。package 每次同时生成 Windows x64 ZIP、Linux x64 TAR.GZ 和校验清单，保存在 downloads/3.0.1/，并更新 downloads/ 中的当前下载别名，历史版本保留。两包使用同一套 Next 构建及内容快照，不包含账号、反馈、审批、日志或会话等私有数据。构建和验证通过后再打包，随后运行 node scripts/verification/verify-release.mjs 核验归档。
+build 先生成 Pages 静态目录 out/，再生成便携服务 dist/（node dist/server.mjs 启动）；verify:build 使用临时 D1、隔离文件存储和浏览器验证 Next 页面、权限、反馈、定时发布和日志。package 每次同时生成 Windows x64 ZIP、Linux x64 TAR.GZ 和校验清单，保存在 downloads/3.0.2/，并更新 downloads/ 中的当前下载别名，历史版本保留。两包使用同一套 Next 构建及内容快照，不包含账号、反馈、审批、日志或会话等私有数据。构建和验证通过后再打包，随后运行 node scripts/verification/verify-release.mjs 核验归档。
 
 内容迁移包通过项目目录中的 `npm run package` 导出，从 `downloads/<版本>/` 选择所需平台的部署包。完整备份请先停止网站，再备份整个网站目录并妥善保管私有 `data/`。
 

@@ -285,7 +285,11 @@
     "display.seniorOn": "تم تفعيل وضع كبار السن",
     "display.seniorOff": "تمت استعادة العرض القياسي",
     "display.accessibilityOn": "تم تفعيل وضع القراءة الميسرة",
-    "display.accessibilityOff": "تمت استعادة وضع القراءة القياسي"
+    "display.accessibilityOff": "تمت استعادة وضع القراءة القياسي",
+    "footer.navigation": "تصفح الموقع",
+    "footer.organization": "الهيئات واختصاصاتها",
+    "footer.sitemap": "خريطة الموقع",
+    "footer.help": "مساعدة الموقع"
   },
   "ui": {
     "language": "اللغة",

@@ -285,7 +285,11 @@
     "display.seniorOn": "Senior mode enabled",
     "display.seniorOff": "Standard display restored",
     "display.accessibilityOn": "Accessible reading mode enabled",
-    "display.accessibilityOff": "Standard reading mode restored"
+    "display.accessibilityOff": "Standard reading mode restored",
+    "footer.navigation": "Website navigation",
+    "footer.organization": "Organizations and responsibilities",
+    "footer.sitemap": "Site map",
+    "footer.help": "Website help"
   },
   "ui": {
     "language": "Language",

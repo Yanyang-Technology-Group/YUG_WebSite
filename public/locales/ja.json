@@ -285,7 +285,11 @@
     "display.seniorOn": "シニアモードを有効にしました",
     "display.seniorOff": "標準表示に戻しました",
     "display.accessibilityOn": "アクセシビリティ閲覧モードを有効にしました",
-    "display.accessibilityOff": "標準の閲覧モードに戻しました"
+    "display.accessibilityOff": "標準の閲覧モードに戻しました",
+    "footer.navigation": "サイト案内",
+    "footer.organization": "組織と業務",
+    "footer.sitemap": "サイトマップ",
+    "footer.help": "サイトの使い方"
   },
   "ui": {
     "language": "言語",

@@ -624,7 +624,7 @@ for (const [key, label, defaultValue] of [["header.hot1Query","热搜一搜索�
 
 // Retain legacy keys so existing snapshots remain importable, while removing retired UI.
 for (const field of contentFields) {
-  if (['footer.navigation', 'footer.organization', 'footer.sitemap', 'footer.help', 'footer.motto'].includes(field.key)) field.retired = true;
+  if (field.key === 'footer.motto') field.retired = true;
   if (['footer.about', 'footer.statement', 'footer.contact', 'footer.notice'].includes(field.key) || /^info\.(about|statement|contact)\./.test(field.key)) field.retired = true;
 }
 
