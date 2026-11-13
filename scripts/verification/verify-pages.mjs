@@ -87,7 +87,7 @@ try {
   page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
   await page.goto(base + '/'); await page.locator('#news-list li').first().waitFor({ state: 'visible', timeout: 15000 }).catch(async () => { await page.waitForTimeout(1500); });
   check('home renders published content', (await page.locator('body').innerText()).includes('晏阳联合政府'));
-  check('footer matches requested copyright and disclaimer', await page.locator('footer [data-content="footer.brand"]').innerText() === '© 2025-2026 晏阳技术组' && await page.locator('footer [data-content="footer.description"]').innerText() === '“晏阳联合政府” 属于虚构创作设定，与现实世界中的任何政府、政权、组织不存在对应关系。' && await page.locator('footer [data-content="footer.attribution"]').innerText() === '影像来源：晏阳城市建设服务器');
+  check('footer shows bilingual identity and copyright above disclaimer', await page.locator('.footer-brand').innerText() === '晏阳联合政府' && await page.locator('.footer-brand-en').innerText() === 'Yanyang United Government' && await page.locator('.footer-copyright').innerText() === '© 2025-2026 晏阳技术组' && await page.locator('.footer-description').locator('p').first().evaluate(element => element.nextElementSibling?.matches('[data-content="footer.description"]')) && await page.locator('footer [data-content="footer.description"]').innerText() === '“晏阳联合政府” 属于虚构创作设定，与现实世界中的任何政府、政权、组织不存在对应关系。' && await page.locator('footer [data-content="footer.attribution"]').innerText() === '影像来源：晏阳城市建设服务器');
   await page.locator('.footer-links [data-info="网站地图"]').click();
   check('restored footer navigation opens sitemap', await page.locator('.content-dialog').isVisible());
   await page.keyboard.press('Escape');

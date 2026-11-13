@@ -279,10 +279,11 @@ main.container { padding-bottom:64px; }
 .footer-links strong { font-weight:500; color:#efe8e2; margin-inline-end:24px; }
 .footer-links button:hover { color:white; }
 .footer-main { display:flex; align-items:center; justify-content:space-between; gap:35px; padding:32px 0 38px; }
-.footer-brand { display:block; color:#f7f4f1; font:500 24px/1.6 var(--serif); letter-spacing:.1em; margin-bottom:6px; }
-.footer-main > div:first-child p { font-size:11px; color:#b19590; }
+.footer-brand { display:block; color:#f7f4f1; font:500 24px/1.6 var(--serif); letter-spacing:.1em; }
+.footer-brand-en { display:block; margin-top:3px; color:#c3a69a; font:500 11px/1.5 var(--sans); }
 .footer-main > div { min-width:0; }
 .footer-description { flex:1; line-height:2; color:#c4aea2; }
+.footer-copyright { color:#e2c9b7; }
 .image-attribution { font-size:10px; color:#c3a69a; }
 .footer-back { display:flex; align-items:center; gap:12px; min-width:0; max-width:100%; color:#ded2cc; font-size:12px; }
 .footer-back .icon { width:17px; height:17px; }
